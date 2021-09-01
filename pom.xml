@@ -3,7 +3,7 @@
   <groupId>com.hemanth</groupId>
   <artifactId>StaffJdbc</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <!-- <packaging>war</packaging> -->
   <name>StaffManagement</name>
   
   <dependencies>

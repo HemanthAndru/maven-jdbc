@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maven-staff
+  labels:
+    app: jdbc-maven
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jabc-maven
+  template:
+    metadata:
+      name: docker-demo-repo
+      labels:
+        app: docker-demo-repo
+    spec:
+      containers:
+      - image: hemanth08/docker-demo-repo:#{Build.BuildId}#
+        name: docker-demo-repo
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "2000Mi"
+            cpu: "1200m"
+      imagePullSecrets:
+        - name: regcred
+
+------
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: name
+  name: first
+spec:
+  type: LoadBalancer
+  selector:
+    app: docker-demo-repo 
+  ports:
+    - port: 8080
+      targetPort: 8080
